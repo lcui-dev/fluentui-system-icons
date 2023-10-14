@@ -99,10 +99,12 @@ function convert(fontsDirPath) {
     const jsonData = JSON.parse(
       fs.readFileSync(jsonFile, { encoding: "utf-8" })
     );
-    const iconList = Object.keys(jsonData).sort().map((key) => ({
-      code: jsonData[key],
-      name: key.replace("ic_fluent_", "").replace(/_/g, "-"),
-    }));
+    const iconList = Object.keys(jsonData)
+      .sort()
+      .map((key) => ({
+        code: jsonData[key],
+        name: key.replace("ic_fluent_", "").replace(/_/g, "-"),
+      }));
     const mainCss = [
       "@font-face {",
       `  font-family: "${font.name}";`,
@@ -123,6 +125,13 @@ function convert(fontsDirPath) {
     iconCssOutput.push(mainCss);
 
     iconList.forEach((icon) => {
+      // wchar_t 类型占用 2 字节，因此字符码不能大于它的最大值
+      if (icon.code > 0xffff) {
+        console.warn(
+          `Ignored ${icon.name} because its codepoint ${icon.code} has exceeded the maximum value of wchar_t type`
+        );
+        return;
+      }
       const list = icon.name.replace("-regular|-filled", "").split("-");
       const style = icon.name.includes("-filled") ? "filled" : "regular";
       const size = list[list.length - 2];
