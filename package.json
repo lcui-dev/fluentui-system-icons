@@ -16,10 +16,10 @@
   "author": "Liu <lc-soft@live.cn>",
   "license": "MIT",
   "devDependencies": {
-    "@types/react": "^18.2.21",
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@lcui/react": "^0.3.0",
     "react": "^18.2.0"
   }
 }
