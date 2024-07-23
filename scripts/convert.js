@@ -35,7 +35,7 @@ function clsx(...args) {
   return args.filter(Boolean).join(' ');
 }
 
-export function Icon({ className, name, filled, fontSize, style }: IconExProps) {
+export function Icon({ className, name, filled, fontSize, style, ...props }: IconExProps) {
   const iconData = iconMap[name];
   const error = <text>unknown icon: {name}</text>;
 
@@ -60,6 +60,7 @@ export function Icon({ className, name, filled, fontSize, style }: IconExProps) 
         fontSize: \`\${fontSize || size}px\`,
         ...style
       }}
+      {...props}
     >
       {String.fromCodePoint(code)}
     </text>
