@@ -7,7 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "convert": "node scripts/convert.js fonts",
-    "build": "npm run convert && tsc"
+    "build": "npm run convert && tsc",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "version": "npm run build && npm run changelog && git add CHANGELOG.md"
   },
   "repository": {
     "type": "git",
