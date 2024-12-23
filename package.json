@@ -1,6 +1,6 @@
 {
   "name": "@lcui/react-icons",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An icon library for LCUI applications based on @fluentui/react-icons",
   "main": "dist/index.js",
   "type": "module",
