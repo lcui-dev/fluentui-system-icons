@@ -57,7 +57,7 @@ export function Icon({ className, name, filled, fontSize, style, ...props }: Ico
     <text
       className={clsx(\`fui-icon-\${styleName}\`, className)}
       style={{
-        fontSize: \`\${fontSize || size}px\`,
+        fontSize: typeof fontSize === 'number' ? \`\${fontSize || size}px\` : undefined,
         ...style
       }}
       {...props}
